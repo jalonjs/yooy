@@ -1,7 +1,7 @@
 {
-  "name": "y",
+  "name": "yooy",
   "version": "0.0.1",
-  "description": "y",
+  "description": "yooy",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "gulp add && gulp watch & node ./server/bin/www",

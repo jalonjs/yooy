@@ -1,4 +1,4 @@
-# y
+# yooy
 
 ### you should know
 - [angular](https://www.angularjs.org) (1.x)
@@ -11,9 +11,9 @@
 
 ### how to run
 ```
-git clone https://github.com/jalonjs/y.git
+git clone https://github.com/jalonjs/yooy.git
 ```
-- ```cd y```
+- ```cd yooy```
 - npm install
 - bower install
 
