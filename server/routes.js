@@ -3,12 +3,30 @@ var config = require('./config');
 
 module.exports = function (app) {
 
-    // 其余API请求，走代理
+    // API请求
     app.use('/api', require('./api'));
 
+    // 登录
+    app.get('/login', function(req, res) {
+        if (req.session.uid) {
+            res.redirect('/');
+        }else {
+            res.render('login.ejs', {name: '登录'});
+        }
+    });
+
+    // 首页
+    app.route('/').get(function(req, res) {
+        res.redirect('/feed');
+    });
+
     // All other routes should redirect to the index.html
-    app.route('/*').get(function (req, res) {
-        res.render('index');
+    app.route('/*').get(function (req, res, next) {
+        if (req.session.uid) {
+            res.render('index');
+        } else {
+            res.redirect('/login');
+        }
     });
 
     function checkToken(req, res) {

@@ -4,6 +4,7 @@ var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
+var session = require('express-session')
 var app = express();
 
 // 基本配置
@@ -27,9 +28,20 @@ var accessLogStream = fs.createWriteStream(logDirectory +'/' + YMD +'.log', {fla
 var logMode = process.env.NODE_ENV
 logMode === 'development' ? app.use(logger('dev')) : app.use(logger('combined', {stream: accessLogStream}))
 
+
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: false}));
-app.use(cookieParser());
+app.use(cookieParser('jalon'));
+app.use(session({
+    name: 'ysid', // 在cookie里的session cookie的名字
+    secret: 'yooy-secret', // 加密字符串
+    resave: true, // 每次请求都重新设置session cookie，假设你的cookie是6000毫秒过期，每次请求都会再设置6000毫秒。
+    saveUninitialized: true, // 是指无论有没有session cookie，每次请求都设置个session cookie ，默认给个标示为 connect.sid。
+    cookie: { maxAge: 1000 * 60 * 60 * 24 * 30 }, // 一个月
+    maxAge: 1000 * 60 * 60 * 24 * 30
+}))
+
+//  静态资源
 app.use(express.static(path.join(__dirname, '../client')));
 
 // 路由
