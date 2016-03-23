@@ -4,8 +4,8 @@
   "description": "yooy",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "gulp add && gulp watch & node ./server/bin/www",
-    "prod": "rm -rf ./dist && gulp dist && node ./dist/server/bin/www && open http://localhost:3000"
+    "dev": "gulp add && gulp watch & NODE_ENV=development node ./server/bin/www",
+    "prod": "rm -rf ./dist && gulp dist && NODE_ENV=production node ./dist/server/bin/www"
   },
   "author": "jalon",
   "license": "ISC",

@@ -7,7 +7,7 @@ var bodyParser = require('body-parser');
 var app = express();
 
 // 基本配置
-var config = require('./config/config');
+var config = require('./config');
 
 // view engine 设置
 app.set('views', [path.join(__dirname, '../client'), path.join(__dirname, 'views')]);
@@ -16,7 +16,17 @@ app.set('view engine', 'html');
 
 // 各种中间件
 //app.use(favicon(path.join(config.root, 'client', 'favicon.ico')));
-app.use(logger('dev'));
+
+//  日志
+var fs = require('fs')
+var date = new Date();
+var YMD = date.getFullYear() + '-' + (date.getMonth()+1) + '-' + date.getDate();
+var logDirectory = __dirname + '/logs'
+fs.existsSync(logDirectory) || fs.mkdirSync(logDirectory)
+var accessLogStream = fs.createWriteStream(logDirectory +'/' + YMD +'.log', {flags: 'a'})
+var logMode = process.env.NODE_ENV
+logMode === 'development' ? app.use(logger('dev')) : app.use(logger('combined', {stream: accessLogStream}))
+
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: false}));
 app.use(cookieParser());

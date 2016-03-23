@@ -7,7 +7,7 @@ module.exports = function (ioChat, socket) {
 
     var headers = socket.handshake.headers;
 
-    socket.emit('chat:connection', {msg: '已经建立连接!'});
+    socket.emit('chat:connection', {msg: '聊天系统已经建立连接!'});
 
     //  广播
     // ioChat.emit('a message', {
@@ -17,7 +17,7 @@ module.exports = function (ioChat, socket) {
 
     //  消息
     socket.on('chat:message', function (data) {
-        console.log('I received a private message by ', data.from, ' saying ', data.msg);
+        console.log(data.from, ':', data.msg);
     });
 
     //  用户失去连接

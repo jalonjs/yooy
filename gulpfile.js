@@ -66,8 +66,9 @@ gulp.task('add', ['styles', 'js', 'html'], function () {
         .pipe(wiredep())
         .pipe(inject(gulp.src([
             './client/**/*.js',
+            './client/**/*.css',
             '!./client/bower_components/**/*.js',
-            './client/**/*.css'
+            '!./client/static/**/*.js'
         ], {read: false}), {
             transform: function (filepath) {
                 var ext = filepath.split('.').splice(-1)[0];

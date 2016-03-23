@@ -7,7 +7,11 @@ module.exports = function (ioNotice, socket) {
 
     var headers = socket.handshake.headers;
 
-    socket.emit('notice:connecting', {msg: '已经建立连接!'});
+    socket.emit('notice:connection', {msg: '通知系统已经建立连接!'});
+
+    socket.on('notice:message', function (data) {
+        console.log(data.from, ':', data.msg);
+    });
 
     //  用户失去连接
     socket.on('disconnect', function () {

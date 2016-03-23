@@ -1,7 +1,7 @@
 var chat = require('../subsystem/chat')
+var notice = require('../subsystem/notice')
 
-module.exports = function (server) {
-    var io = require('socket.io')(server);
+module.exports = function (io) {
 
     //  聊天系统
     var ioChat = io.of('/chat')
@@ -12,7 +12,7 @@ module.exports = function (server) {
     //  通知系统
     var ioNotice = io.of('/notice')
         .on('connection', function (socket) {
-
+            notice(ioNotice, socket);
         });
 
 };

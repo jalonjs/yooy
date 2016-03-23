@@ -6,11 +6,10 @@
 
 var app = require('../app');
 var http = require('http');
-// 基本配置
-var config = require('../config/config');
 
-var port = config.env.dev.port;
-app.set('port', port);
+// 基本配置
+var config = require('../config');
+app.set('port', config.port);
 
 /**
  * Create HTTP server.
@@ -22,13 +21,17 @@ var server = http.createServer(app);
  * Listen on provided port, on all network interfaces.
  */
 
-// socket.io
-require('../socket')(server);
+// socket.io 启动socket
+var io = require('socket.io')(config.socket);
+require('../socket')(io);
 
-server.listen(port);
+server.listen(config.port);
+
+//  on error
 server.on('error', function (err) {
     console.log(err)
 });
+
 server.on('listening', function () {
-    console.log('listening on http://localhost:' + port)
+    console.log('listening on http://localhost:' + config.port)
 });
