@@ -61,7 +61,7 @@ gulp.task('html', ['templates'], function () {
 
 //  把css js引入到页面 (app bower)
 gulp.task('add', ['styles', 'js', 'html'], function () {
-    var target = gulp.src('./client/index.html');
+    var target = gulp.src('./client/app.html');
     target
         .pipe(wiredep())
         .pipe(inject(gulp.src([
@@ -87,7 +87,7 @@ gulp.task('add', ['styles', 'js', 'html'], function () {
 
 //  把html引用的css和js压缩到目标文件压缩并引用 放到dist
 gulp.task('usemin', ['add', 'static'], function () {
-    return gulp.src('./client/index.html')
+    return gulp.src('./client/app.html')
         .pipe($.usemin({
             cssVendor: [$.minifyCss(), $.rev()],
             cssApp: [$.minifyCss(), $.rev()],
