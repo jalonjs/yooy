@@ -37,8 +37,7 @@ app.use(session({
     secret: 'yooy-secret', // 加密字符串
     resave: true, // 每次请求都重新设置session cookie，假设你的cookie是6000毫秒过期，每次请求都会再设置6000毫秒。
     saveUninitialized: true, // 是指无论有没有session cookie，每次请求都设置个session cookie ，默认给个标示为 connect.sid。
-    cookie: { maxAge: 1000 * 60 * 60 * 24 * 30 }, // 一个月
-    maxAge: 1000 * 60 * 60 * 24 * 30
+    cookie: { maxAge: 1000 * 60 * 60 * 24 * 30 } // 一个月
 }))
 
 //  静态资源

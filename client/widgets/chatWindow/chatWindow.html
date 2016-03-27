@@ -1,0 +1,68 @@
+<div class="chat-window-box">
+    <div class="chat-window">
+        <div class="vbox">
+            <div class="wrapper b-b b-t b-light">
+                <a href="" class="pull-right text-muted text-md">
+                    <i class="fa fa-close"></i>
+                </a>
+                和{{ to.username }}聊天
+            </div>
+            <div class="row-row">
+                <div class="cell">
+                    <div class="cell-inner padder" id="msg-list-box">
+                        <div ng-repeat="msg in chatMsgs">
+
+                            <!--对方-->
+                            <div class="m-b m-t" ng-if="msg.user.id == to.id">
+                                <a href="" class="pull-left thumb-xs avatar">
+                                    <img src="static/images/jalon.jpg" alt="...">
+                                    <i class="on md b-white bottom"></i>
+                                </a>
+                                <div class="clear m-r-xl">
+                                    <div class="pos-rlt m-l-sm pull-left">
+                                        <span class="arrow left pull-up" style="left: -8px;"></span>
+                                        <p class="m-b-none wrapper-sm r b b-light text-left break-all">{{ msg.msg }}</p>
+                                        <small class="text-muted pull-right m-t-xs">
+                                            {{ msg.time | fromNow }}
+                                        </small>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!--我-->
+                            <div class="m-b m-t" ng-if="msg.user.id == from.id">
+                                <a href="" class="pull-right thumb-xs avatar">
+                                    <img src="static/images/jalon.jpg" class="img-circle" alt="...">
+                                    <i class="on md b-white bottom"></i>
+                                </a>
+                                <div class="clear m-l-xl">
+                                    <div class="pos-rlt pull-right m-r-sm">
+                                        <span class="arrow right pull-up arrow-light"></span>
+                                        <p class="m-b-none text-left wrapper-sm bg-light r break-all">{{ msg.msg }}</p>
+                                        <small class="text-muted pull-left m-t-xs">{{ msg.time | fromNow }}</small>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="wrapper b-t b-light">
+                <form class="m-b-none ng-pristine ng-valid">
+                    <div class="input-group">
+                        <input type="text"
+                               auto-focus-when="true"
+                               ng-model="message"
+                               class="form-control m-r"
+                               placeholder="说点什么吧..."
+                               ng-enter="send()">
+                        <span class="input-group-btn">
+                            <button class="btn btn-info" type="button" ng-click="send()">发送</button>
+                        </span>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

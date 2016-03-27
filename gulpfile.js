@@ -16,6 +16,7 @@ var watch = require('gulp-watch');
 var angularTemplates = require('gulp-angular-templates');
 var exec = require('child_process').exec;
 var browserSync = require('browser-sync').create();
+var config = require('./server/config');
 
 // 把sass编译成css(在当前文件夹)
 var scssSrc = './client/**/*.scss',
@@ -46,8 +47,8 @@ gulp.task('static', function () {
 
 // 把html模板打包
 gulp.task('templates', function () {
-    return gulp.src(['./client/app/**/*.html', './client/widgets/**/*.html'])
-        .pipe(angularTemplates({module: 'yApp', basePath: 'app/'}))
+    return gulp.src(['./client/**/*.html', './client/**/*.html'])
+        .pipe(angularTemplates({module: 'yApp'}))
         .pipe(gulp.dest('.temp/templates'));
 });
 
@@ -100,11 +101,10 @@ gulp.task('usemin', ['add', 'static'], function () {
 // 监听任务
 gulp.task('watch', function () {
     browserSync.init({
-        proxy: 'localhost:3000',
-        files: ['./**/*.{js,css,html}']
+        proxy: 'localhost:' + config.port,
+        files: ['./client/**/*.{js,css,html}']
     });
-
-    gulp.watch('client/**/*', ['styles', 'add']);
+    gulp.watch(['client/**/*.scss', 'client/**/*.html'], ['styles', 'add']);
 });
 
 // dist

@@ -1,0 +1,14 @@
+/*reset*/
+* {
+    margin: 0;
+    padding: 0;
+}
+
+li {
+    list-style-type: none;
+}
+
+/*自定义*/
+.break-all {
+    word-break: break-all;
+}

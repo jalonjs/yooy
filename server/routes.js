@@ -6,18 +6,29 @@ module.exports = function (app) {
     // API请求
     app.use('/api', require('./api'));
 
-    // 登录
+    // 登录页
     app.get('/login', function(req, res) {
         if (req.session.uid) {
             res.redirect('/');
         }else {
-            res.render('login.ejs', {name: '登录'});
+            res.render('login.ejs', {tip: ''});
         }
     });
 
-    // 首页
-    app.route('/').get(function(req, res) {
-        res.redirect('/feed');
+    // 登录
+    app.post('/login', function(req, res) {
+        if(req.body.email == '824525504@qq.com' && req.body.password == '111111') {
+            req.session.uid = 1;
+            res.redirect('/');
+        }else {
+            res.render('login.ejs', {tip: '用户名或密码错误'});
+        }
+    });
+
+    // 登出
+    app.get('/logout', function(req, res) {
+        req.session.destroy();
+        res.redirect('/');
     });
 
     // All other routes should redirect to the index.html

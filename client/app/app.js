@@ -12,7 +12,14 @@ angular.module('yApp', [
         function ($locationProvider, $urlMatcherFactoryProvider) {
             $urlMatcherFactoryProvider.strictMode(false);
             $locationProvider.html5Mode(true);
-        }]).run(function () {
+            
+        }]).run(['$rootScope', function ($rootScope) {
 
+    //  TODO
+    $rootScope.__me = window.__me = {
+        id: 1,
+        username: 'Jalon',
+        avatar: 'static/images/jalon.jpg'
+    }
 
-});
+}]);

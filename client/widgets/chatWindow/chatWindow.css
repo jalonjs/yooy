@@ -1,0 +1,14 @@
+.chat-window-box {
+  position: fixed;
+  z-index: 1111;
+  top: 0;
+  width: 100%;
+  text-align: center; }
+
+.chat-window {
+  display: inline-block;
+  width: 600px;
+  height: 400px;
+  background: #ffffff;
+  box-shadow: 0px 0px 20px #aaa;
+  margin-top: 80px; }

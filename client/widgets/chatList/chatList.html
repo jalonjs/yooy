@@ -1,0 +1,20 @@
+<div class="chat-list">
+    <div class="header">
+    </div>
+    <div class="list wrapper-md">
+        <ul class="list-group no-borders pull-in auto">
+            <li class="list-group-item" ng-repeat="user in list" ng-click="openChat(user)">
+                <span class="pull-left thumb-sm m-r avatar">
+                    <img src="{{ user.avatar }}" alt="{{ user.username }}" class="img-circle">
+                    <i class="on md b-white bottom"></i>
+                </span>
+                <a href="#" ><i class="fa fa-comment-o pull-right m-t-sm text-sm"></i></a>
+                <div class="clear">
+                    <div><a href="">{{ user.username }}</a></div>
+                    <small class="text-muted">2分钟前</small>
+                </div>
+            </li>
+
+        </ul>
+    </div>
+</div>

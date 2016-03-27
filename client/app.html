@@ -7,15 +7,23 @@
     <title>Y</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <!-- build:cssVendor vendor.css -->
+    <!-- build:cssVendor static/css/vendor.css -->
     <!-- bower:css -->
     <!-- endbower -->
     <!-- endbuild -->
 
-    <!-- build:cssApp app.css -->
+    <!-- build:cssApp static/css/app.css -->
     <!-- inject:css -->
     <link rel="stylesheet" href="app/feed/feed.css">
     <link rel="stylesheet" href="bower_components/angular/angular-csp.css">
+    <link rel="stylesheet" href="static/css/animate.css">
+    <link rel="stylesheet" href="static/css/app.css">
+    <link rel="stylesheet" href="static/css/custom.css">
+    <link rel="stylesheet" href="widgets/chatList/chatList.css">
+    <link rel="stylesheet" href="widgets/chatWindow/chatWindow.css">
+    <link rel="stylesheet" href="bower_components/font-awesome/css/font-awesome.css">
+    <link rel="stylesheet" href="bower_components/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="bower_components/font-awesome/scss/font-awesome.css">
     <!-- endinject -->
     <!-- endbuild -->
 </head>
@@ -23,8 +31,12 @@
 <div class="app-content">
     <div ui-view></div>
 </div>
+<!--聊天列表-->
+<chat-list></chat-list>
+<!--聊天窗口-->
+<chat-window from="from" to="to" ng-if="chatWindowVisible"></chat-window>
 </body>
-<!-- build:jsVendor vendor.js -->
+<!-- build:jsVendor static/js/vendor.js -->
 <!-- bower:js -->
 <script src="bower_components/jquery/dist/jquery.js"></script>
 <script src="bower_components/angular/angular.js"></script>
@@ -35,17 +47,22 @@
 <script src="bower_components/angular-sanitize/angular-sanitize.js"></script>
 <script src="bower_components/angular-touch/angular-touch.js"></script>
 <script src="bower_components/angular-ui-router/release/angular-ui-router.js"></script>
+<script src="bower_components/moment/moment.js"></script>
 <!-- endbower -->
 <script src="static/js/socket.io-1.4.5.js"></script>
 <!-- endbuild -->
 
-<!-- build:jsApp app.js -->
+<!-- build:jsApp static/js/app.js -->
 <!-- inject:js -->
 <script src="app/app.js"></script>
 <script src="app/router.js"></script>
 <script src="templates/templates.js"></script>
 <script src="app/feed/feed.controller.js"></script>
+<script src="widgets/chatList/chatList.directive.js"></script>
+<script src="widgets/chatWindow/chatWindow.directive.js"></script>
+<script src="widgets/directive/directive.js"></script>
 <script src="widgets/socket/socket.js"></script>
+<script src="widgets/timeFomat/fromNow.filter.js"></script>
 <script src="app/feed/ccc/c.controller.js"></script>
 <!-- endinject -->
 <!-- endbuild -->
